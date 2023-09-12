@@ -1,0 +1,2 @@
+# Ideas
+Ideas and coursework
