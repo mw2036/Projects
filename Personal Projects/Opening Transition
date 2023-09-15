@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<style>
+
+			@keyframes floatIn1 {
+				from {top: 10em}
+				to {top: 8em}
+			}
+
+			@keyframes floatIn2 {
+				from {top: 10em}
+				to {top: 12em}
+			}
+
+			@keyframes floatIn3 {
+				from {top: 11.1em;}
+
+				to {top: 13em;}
+			}
+
+			@keyframes floatIn4 {
+				from {top: 34em;
+					opacity: 0.2;
+					}
+
+				to {top: 22em;
+					opacity: 1;}
+			}
+
+			body {
+				background-color: black;
+				font-family: "Lucida Console", "Courier New", monospace;
+				overflow: hidden;
+			}
+
+			#container {
+				position: relative;
+				width: 100%;
+			}
+
+			#triangle1 {
+				width: 0px;
+				height: 0px;
+				border-top: 12em solid transparent;
+				border-bottom: 12em solid transparent;
+				border-left: 21em solid green;
+				position: absolute;
+				top: 8rem;
+				left: 34rem;
+				animation: floatIn1 1.5s;
+			}
+
+			#triangle2 {
+				width: 0px;
+				height: 0px;
+				border-top: 8em solid transparent;
+				border-bottom: 8em solid transparent;
+				border-left: 14em solid rgb(255, 0, 0);
+				position: absolute;
+				top: 12rem;
+				left: 36.3rem;
+				animation: floatIn2 1.5s;
+			}
+
+			#triangle3 {
+				width: 0px;
+				height: 0px;
+				border-top: 7em solid transparent;
+				border-bottom: 7em solid transparent;
+				border-left: 12.1em solid black;
+				position: absolute;
+				top: 13rem;
+				left: 36.9em;
+				animation: floatIn3 1.5s;
+			}
+
+			#button {
+				padding: 1em 2em;
+				top: 22em;
+				left: 45em;
+				position: relative;
+				border-radius: 0.8em;
+				animation-name: floatIn4;
+				animation-duration: 2s; 
+				animation-delay: 2s;
+				opacity: 0;
+				animation-fill-mode: forwards;
+			}
+			
+			#img {
+				width: 100%;
+				height: 100%;
+				left: 0;
+				top: 0;
+				opacity: 0;
+				position: absolute;
+				z-index: -1;
+				display: none;
+			}
+
+			/*equilateraltriangle formula: top + bottom * 0.8660254*/
+
+		</style>
+	</head>
+
+
+	<body>
+		<div id="triangle1"></div>
+		<div id="triangle2"></div>
+		<div id="triangle3"></div>
+		<button id="button">Welcome</button>
+
+		<script>
+			const button = document.getElementById("button"),
+				t1 = document.getElementById("triangle1"),
+				t2 = document.getElementById("triangle2"),
+				t3 = document.getElementById("triangle3"),
+				img = document.getElementById("img");
+
+			const t1Start = {
+				bTop: 12,
+				bLeft: 12 * 1.7320508,
+				top: 8,
+				left: 34
+			}
+
+			const t2Start = {
+				bTop: 8,
+				bLeft: 8 * 1.7320508,
+				top: 12,
+				left: 36.3
+			}
+
+			const t3Start = {
+				bTop: 7,
+				bLeft: 7 * 1.7320508,
+				top: 13,
+				left: 36.9
+			}
+
+
+			button.onclick = function() {
+
+				/*button.animate(
+					[
+						{opacity: 0},
+						{opacity: 1},
+					],
+					1000
+				);*/
+
+				button.animate(
+					{
+						opacity: ["", 0],
+						top: ["", "34em"],
+						easing: ["ease-in", "ease-out"],
+					},
+					{duration: 800, fill: "forwards"}
+				);
+
+				/*t1.animate(
+					{
+						borderTop: ["12em solid transparent", "100em"],
+						borderBottom: ["12em solid transparent", "100em"],
+						borderLeft: ["21em solid green", "250em"],
+						top: ["8em", "-80em"],
+						left: ["34em", "-60em"],
+					},
+					{duration: 3000, fill: "forwards"}
+				);*/
+
+				setTimeout(() => {
+					var x = 0;
+					var id = setInterval(frame, 10);
+
+					function frame() {
+						if (x < 100) {
+							x += 1.1;
+							t1.style.borderTop = (t1Start.bTop + x) + 'em solid transparent';
+							t1.style.borderBottom = (t1Start.bTop + x) + 'em solid transparent';
+							t1.style.borderLeft = (t1Start.bLeft + (x * 1.7)) + 'em solid green';
+							t1.style.top = (t1Start.top - x) + 'rem';
+							t1.style.left = (t1Start.left - (x * 0.65)) + 'rem';
+						} 
+						else {
+							clearInterval(id);
+						}
+					}
+
+
+					setTimeout(() => {
+						var y = 0;
+						var id2 = setInterval(frame2, 10);
+		
+						function frame2() {
+							if (y < 140) {
+								y += 1.1 * 1.3;
+								t2.style.borderTop = (t2Start.bTop + (y * 0.6)) + 'em solid transparent';
+								t2.style.borderBottom = (t2Start.bTop + (y * 0.6)) + 'em solid transparent';
+								t2.style.borderLeft = (t2Start.bLeft + y) + 'em solid red';
+								t2.style.top = (t2Start.top - (y * 0.6)) + 'rem';
+								t2.style.left = (t2Start.left - (y * 0.4)) + 'rem';
+							} 
+							else {
+								clearInterval(id2);
+							}
+						}
+					}, 400); 
+
+
+					setTimeout(() => {
+						var z = 0;
+						var id3 = setInterval(frame3, 10);
+		
+						function frame3() {
+							if (z < 160) {
+								z += 1.2 * 1.3;
+								t3.style.borderTop = (t3Start.bTop + (z * 0.5)) + 'em solid transparent';
+								t3.style.borderBottom = (t3Start.bTop + (z * 0.5)) + 'em solid transparent';
+								t3.style.borderLeft = (t3Start.bLeft + (z * 0.8)) + 'em solid black';
+								t3.style.top = (t3Start.top - (z * 0.5)) + 'rem';
+								t3.style.left = (t3Start.left - (z * 0.3)) + 'rem';
+							} 
+							else {
+								clearInterval(id3);
+							}
+						}
+					}, 500);
+
+					/*setTimeout(() => {
+						img.style.display = "inline";
+						img.animate(
+							{
+								opacity: [0, 1],
+								easing: ["ease-in", "ease-out"],
+							},
+							{duration: 1000, fill: "forwards"}
+						)
+						img.style.zIndex = "0";
+					}, 1000);*/
+					
+				}, 1000);
+
+			};
+
+		</script>
+	</body>
+</html>
