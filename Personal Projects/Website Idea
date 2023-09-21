@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <style>
+            
+            body {
+                background-color: orange;
+                overflow: hidden;
+                margin: 0%;
+            }
+
+            #header {
+                width: 3vw;
+                height: 100vh;
+                background-color: grey;
+                text-align: center;
+                margin: 0%;
+            }
+        
+            #more {
+                padding: 20%;
+                margin-top: 20%;
+            }
+
+        </style>
+    </head>
+
+
+    <body>
+        <div id="header">
+            <button id="more"><i class="fa fa-bars"></i></button>
+        </div>
+    </body>
+</html>
