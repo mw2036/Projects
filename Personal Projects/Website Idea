@@ -11,16 +11,20 @@
             }
 
             #header {
-                width: 3vw;
+                width: 3%;
                 height: 100vh;
                 background-color: grey;
                 text-align: center;
                 margin: 0%;
+                padding: 0.5em;
+                box-sizing: border-box ;
             }
-        
-            #more {
-                padding: 20%;
-                margin-top: 20%;
+
+            .more {
+                padding: 1em;
+                float: left;
+                margin-bottom: 1em;
+                width: 100%;
             }
 
         </style>
@@ -29,7 +33,47 @@
 
     <body>
         <div id="header">
-            <button id="more"><i class="fa fa-bars"></i></button>
+            <button class="more" onmouseover="openMore()" onmouseleave="closeMore()" id="more"><i class="fa fa-bars"></i></button>
+            <button class="more" onclick="openMore()" id="search"><i class="fa fa-search"></i></button>
+            <button class="more" onclick="openMore()"><i class="fa fa-bars"></i></button>
+            <button class="more" onclick="openMore()"><i class="fa fa-bars"></i></button>
         </div>
+
+        <script>
+            
+            document.getElementById("header");
+            document.getElementById("more");
+            document.getElementById("more"); 
+
+            function openMore()
+            {
+                header.animate
+                (
+                    {
+                        width: ["", "7%"],
+                    },
+                     {duration: 100, fill: "forwards"}
+				);
+                setTimeout(function(){
+                    more.innerHTML = '<i class="fa fa-bars"></i> Menu';
+                    search.innerHTML = '<i class="fa fa-search"></i> Search';
+                }, 60);
+            }  
+
+            function closeMore()
+            {
+                header.animate
+                (
+                    {
+                        width: ["", "3%"],
+                    },
+                     {duration: 100, fill: "forwards"}
+				);
+                setTimeout(function(){
+                    more.innerHTML = '<i class="fa fa-bars"></i>';
+                search.innerHTML = '<i class="fa fa-search"></i>';
+                }, 40);
+            }  
+        </script>
     </body>
 </html>
