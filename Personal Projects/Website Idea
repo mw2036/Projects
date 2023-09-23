@@ -13,18 +13,26 @@
             #header {
                 width: 3%;
                 height: 100vh;
-                background-color: grey;
+                background-color: rgb(48, 48, 48);
                 text-align: center;
                 margin: 0%;
                 padding: 0.5em;
-                box-sizing: border-box ;
+                box-sizing: border-box;
+                position: absolute;
             }
 
-            .more {
+            .sideBtn {
                 padding: 1em;
-                float: left;
                 margin-bottom: 1em;
                 width: 100%;
+                border-color: grey;
+                color: white;
+                background-color: black;
+                position: relative;
+            }
+
+            .sideBtn:hover {
+                background-color: rgb(48, 48, 48);
             }
 
         </style>
@@ -33,47 +41,47 @@
 
     <body>
         <div id="header">
-            <button class="more" onmouseover="openMore()" onmouseleave="closeMore()" id="more"><i class="fa fa-bars"></i></button>
-            <button class="more" onclick="openMore()" id="search"><i class="fa fa-search"></i></button>
-            <button class="more" onclick="openMore()"><i class="fa fa-bars"></i></button>
-            <button class="more" onclick="openMore()"><i class="fa fa-bars"></i></button>
+            <button class="sideBtn" id="more" onclick="openMore()"><i class="fa fa-bars"></i></button>
+            <button class="sideBtn" id="search"><i class="fa fa-search"></i></button>
+            <button class="sideBtn" id="settings" ><i class="fa fa-cog"></i></button>
         </div>
 
         <script>
             
-            document.getElementById("header");
-            document.getElementById("more");
-            document.getElementById("more"); 
+            const menu = document.getElementById("header");
 
-            function openMore()
-            {
-                header.animate
-                (
-                    {
-                        width: ["", "7%"],
-                    },
-                     {duration: 100, fill: "forwards"}
-				);
-                setTimeout(function(){
-                    more.innerHTML = '<i class="fa fa-bars"></i> Menu';
-                    search.innerHTML = '<i class="fa fa-search"></i> Search';
-                }, 60);
-            }  
+            let isMenuOpen = false;
 
-            function closeMore()
-            {
-                header.animate
-                (
-                    {
-                        width: ["", "3%"],
-                    },
-                     {duration: 100, fill: "forwards"}
-				);
-                setTimeout(function(){
+            function openMore() {
+                if (isMenuOpen == false) {
+                    header.animate
+                    (
+                        {
+                            width: ["", "7%"],
+                        },
+                        {duration: 100, fill: "forwards"}
+                    );
+                    setTimeout(function(){
+                        more.innerHTML = '<i class="fa fa-bars"></i> Menu';
+                        search.innerHTML = '<i class="fa fa-search"></i> Search';
+                        settings.innerHTML = '<i class="fa fa-cog"></i> Settings';
+                    }, 60);
+                    isMenuOpen = true;
+                }
+                else {
+                    header.animate
+                    (
+                        {
+                            width: ["", "3%"],
+                        },
+                        {duration: 100, fill: "forwards"}
+				    );
                     more.innerHTML = '<i class="fa fa-bars"></i>';
-                search.innerHTML = '<i class="fa fa-search"></i>';
-                }, 40);
-            }  
+                    search.innerHTML = '<i class="fa fa-search"></i>';
+                    settings.innerHTML = '<i class="fa fa-cog"></i>';
+                    isMenuOpen = false;
+                }
+            }
         </script>
     </body>
 </html>
