@@ -5,20 +5,20 @@
         <style>
             
             body {
-                background-color: orange;
-                overflow: hidden;
                 margin: 0%;
+                color: aliceblue;
             }
 
             #header {
                 width: 3%;
                 height: 100vh;
-                background-color: rgb(48, 48, 48);
+                background-color: black;
                 text-align: center;
                 margin: 0%;
                 padding: 0.5em;
                 box-sizing: border-box;
                 position: absolute;
+                z-index: 1;
             }
 
             .sideBtn {
@@ -29,15 +29,19 @@
                 color: white;
                 background-color: black;
                 position: relative;
+                opacity: 0;
             }
 
             .sideBtn:hover {
                 background-color: rgb(48, 48, 48);
             }
 
-            #background {
-                color: aliceblue;
-                background-color: fuchsia;
+            #more {
+                opacity: 1;
+            }
+
+            #background1 {
+                background-color: black;
                 position: absolute;
                 width: 97%;
                 height: 100% ;
@@ -51,12 +55,31 @@
                 position: relative;
                 font-size: 5em;
                 top: 20%;
+                opacity: 0;
             }
 
             #h2 {
                 position: relative;
                 font-size: 4em;
                 top: 13%;
+                opacity: 0;
+            }
+
+            #innovate {
+                position: relative;
+                top: 13%;
+                padding: 1% 3%;
+                background-color: rgb(175, 35, 35);
+                border: none;
+                color: aliceblue;
+                border-radius: 0.5em;
+                opacity: 0;
+            }
+
+            #innovate:hover {
+                background-color: rgb(134, 28, 28);
+                transform: translate(0, -3px);
+                box-shadow: 0 20px 70px  rgb(134, 28, 28);
             }
 
         </style>
@@ -70,21 +93,18 @@
             <button class="sideBtn" id="settings" ><i class="fa fa-cog"></i></button>
         </div>
 
-        <div id="background">
+        <div id="background1">
             <h1 id="h1">Innovate Today</h1>
             <h2 id="h2">Rest Tomorrow</h2>
+            <button id="innovate">Innovate</button>
         </div>
-
-
-
-
 
 
 
 
         <script>
             
-            const menu = document.getElementById("header");
+            const header = document.getElementById("header");
 
             let isMenuOpen = false;
 
@@ -94,14 +114,30 @@
                     (
                         {
                             width: ["", "7%"],
+                            backgroundColor: ["", "rgb(34, 34, 34)"],
+                        },
+                        {duration: 100, fill: "forwards"}
+                    );
+                    search.animate
+                    (
+                        {
+                            opacity: ["0", "1"],
+                        },
+                        {duration: 100, fill: "forwards"}
+                    );
+                    settings.animate
+                    (
+                        {
+                            opacity: ["0", "1"],
                         },
                         {duration: 100, fill: "forwards"}
                     );
                     setTimeout(function(){
+                        
                         more.innerHTML = '<i class="fa fa-bars"></i> Menu';
                         search.innerHTML = '<i class="fa fa-search"></i> Search';
                         settings.innerHTML = '<i class="fa fa-cog"></i> Settings';
-                    }, 60);
+                    }, 80);
                     isMenuOpen = true;
                 }
                 else {
@@ -109,15 +145,65 @@
                     (
                         {
                             width: ["", "3%"],
+                            backgroundColor: ["", "black"],
                         },
                         {duration: 100, fill: "forwards"}
 				    );
+                    search.animate
+                    (
+                        {
+                            opacity: ["1", "0"],
+                        },
+                        {duration: 100, fill: "forwards"}
+                    );
+                    settings.animate
+                    (
+                        {
+                            opacity: ["1", "0"],
+                        },
+                        {duration: 100, fill: "forwards"}
+                    );
                     more.innerHTML = '<i class="fa fa-bars"></i>';
                     search.innerHTML = '<i class="fa fa-search"></i>';
                     settings.innerHTML = '<i class="fa fa-cog"></i>';
                     isMenuOpen = false;
                 }
-            }
+            };
+
+
+            setTimeout(function(){
+            (function startup() {
+                h1.animate
+                    (
+                        {
+                            top: ["24%", "20%"],
+                            opacity: ["", "1"],
+                        },
+                        {duration: 2000, fill: "forwards"}
+                    );
+                setTimeout(function(){
+                    h2.animate
+                    (
+                        {
+                            top: ["17%", "13%"],
+                            opacity: ["", "1"],
+                        },
+                        {duration: 2000, fill: "forwards"}
+                    );
+                    setTimeout(function(){
+                    innovate.animate
+                    (
+                        {
+                            top: ["17%", "13%"],
+                            opacity: ["", "1"],
+                        },
+                        {duration: 2000, fill: "forwards"}
+                    );
+                    }, 3500);
+                }, 3000);
+            }());
+            }, 600);
+
         </script>
     </body>
 </html>
