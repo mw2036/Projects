@@ -35,6 +35,30 @@
                 background-color: rgb(48, 48, 48);
             }
 
+            #background {
+                color: aliceblue;
+                background-color: fuchsia;
+                position: absolute;
+                width: 97%;
+                height: 100% ;
+                left: 3%;
+                display: flex;
+                align-items: center;
+                flex-direction: column;
+            }
+
+            #h1 {
+                position: relative;
+                font-size: 5em;
+                top: 20%;
+            }
+
+            #h2 {
+                position: relative;
+                font-size: 4em;
+                top: 13%;
+            }
+
         </style>
     </head>
 
@@ -45,6 +69,18 @@
             <button class="sideBtn" id="search"><i class="fa fa-search"></i></button>
             <button class="sideBtn" id="settings" ><i class="fa fa-cog"></i></button>
         </div>
+
+        <div id="background">
+            <h1 id="h1">Innovate Today</h1>
+            <h2 id="h2">Rest Tomorrow</h2>
+        </div>
+
+
+
+
+
+
+
 
         <script>
             
