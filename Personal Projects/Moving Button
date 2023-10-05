@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            body {
+                background-color: black;
+                margin: 0%;
+            }
+
+            #movingButton {
+                padding: 2em 5em;
+                position: relative;
+                top: 50%;
+                left: 50%;
+            }
+
+            #container {
+                height: 100%;
+                width: 100%;
+            }
+            
+        </style>
+    </head>
+    <body>
+        <div id="container">
+            <button id="movingButton">Click me!</button>
+        </div>
+        <script>
+
+           /*var button = document.getElementById("movingButton");
+            button.addEventListener("click",change);
+            function move() {
+
+                function change()
+                {
+                    var i = Math.floor(Math.random()*500)+1;
+                    var j = Math.floor(Math.random()*500)+1;
+                    button.style.left = i+"px";
+                    button.style.top = j+"px";
+                }
+
+            };*/
+
+
+            var b = document.querySelector("#movingButton");
+            b.addEventListener("click",change);
+
+            function change()
+            {
+                let i = Math.floor(Math.random()*500)+1;
+                let j = Math.floor(Math.random()*500)+1;
+                b.style.left = i+'px';
+                b.style.top = j + "px";
+            }
+        </script>
+    </body>
+</html>
