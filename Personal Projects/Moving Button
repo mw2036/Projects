@@ -10,47 +10,33 @@
             #movingButton {
                 padding: 2em 5em;
                 position: relative;
-                top: 50%;
-                left: 50%;
+                top: 45%;
+                left: 45%;
             }
 
             #container {
-                height: 100%;
-                width: 100%;
+                height: 100vh;
+                width: 100vw;
             }
             
         </style>
     </head>
     <body>
         <div id="container">
-            <button id="movingButton">Click me!</button>
+            <button id="movingButton" onmouseenter="change()">Click me!</button>
         </div>
         <script>
 
-           /*var button = document.getElementById("movingButton");
-            button.addEventListener("click",change);
-            function move() {
-
-                function change()
-                {
-                    var i = Math.floor(Math.random()*500)+1;
-                    var j = Math.floor(Math.random()*500)+1;
-                    button.style.left = i+"px";
-                    button.style.top = j+"px";
-                }
-
-            };*/
-
-
-            var b = document.querySelector("#movingButton");
-            b.addEventListener("click",change);
+            const winWidth = window.innerWidth,
+            winHeight = window.innerHeight,
+            b = document.getElementById("movingButton");
 
             function change()
             {
-                let i = Math.floor(Math.random()*500)+1;
-                let j = Math.floor(Math.random()*500)+1;
-                b.style.left = i+'px';
-                b.style.top = j + "px";
+                let newTop = Math.floor(Math.random() * (winHeight - 500)) + 400;
+                let newLeft = Math.floor(Math.random() * (winWidth - 500)) + 400;
+                b.style.top = newTop + "px";
+                b.style.left = newLeft + "px";
             }
         </script>
     </body>
