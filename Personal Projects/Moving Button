@@ -12,6 +12,7 @@
                 position: relative;
                 top: 45%;
                 left: 45%;
+                width: 15em;
             }
 
             #container {
@@ -31,12 +32,17 @@
             winHeight = window.innerHeight,
             b = document.getElementById("movingButton");
 
+            const text = ["Haha, you can't catch me!", "Too slow!", "Better luck next time!",
+                        "Nice Try!", "If you wish to click me, train for another 1000 years", "Over here!"];
+
+
             function change()
             {
                 let newTop = Math.floor(Math.random() * (winHeight - 500)) + 400;
                 let newLeft = Math.floor(Math.random() * (winWidth - 500)) + 400;
                 b.style.top = newTop + "px";
                 b.style.left = newLeft + "px";
+                b.innerHTML = text[Math.floor(Math.random() * 6)];
             }
         </script>
     </body>
