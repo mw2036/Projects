@@ -94,8 +94,6 @@
                 position: absolute;
                 width: 100vw;
                 height: 100vh;
-                z-index: -1;
-                top: 100%;
             }
             </style>
     </head>
@@ -242,16 +240,58 @@
 
             //Changes background
             function change() {
-                let background2 = document.getElementById("background2");
-                background2.style.zIndex = "0";
+                let background2 = document.getElementById("background2"),
+                rndSide = Math.floor(Math.random() * 4);
+
                 background2.style.backgroundColor = "#" +(Math.random()*0xFFFFFF<<0).toString(16);
-                background2.animate
-                (
-                    {
-                        top: ["100%", "0"],
-                    },
-                    {duration: 200, fill: "forwards"}
-                );
+
+                switch (rndSide) {
+                    case 0:
+                        background2.animate
+                        (
+                            {
+                                top: ["100%", "0"],
+                            },
+                            {duration: 300, fill: "forwards"}
+                        );
+                        break;
+                    case 1:
+                        background2.animate
+                        (
+                            {
+                                bottom: ["100%", "0"],
+                            },
+                            {duration: 300, fill: "forwards"}
+                        );
+                        break;
+                    case 2:
+                        background2.animate
+                        (
+                            {
+                                left: ["100%", "0"],
+                            },
+                            {duration: 300, fill: "forwards"}
+                        );
+                        break;
+                    case 3:
+                        background2.animate
+                        (
+                            {
+                                right: ["100%", "0"],
+                            },
+                            {duration: 300, fill: "forwards"}
+                        );
+                        break;
+                    default:
+                    background2.animate
+                        (
+                            {
+                                bottom: ["100%", "0"],
+                            },
+                            {duration: 300, fill: "forwards"}
+                        );
+                        break;
+                }
             }
             
         </script>
