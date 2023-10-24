@@ -95,6 +95,33 @@
                 width: 100vw;
                 height: 100vh;
             }
+
+
+            .buttons>button {
+                position: absolute;
+                padding: 1%;
+                font-size: 2em;
+                z-index: 1;
+            }
+
+            #top {
+                width: 100%;
+            }
+            #right {
+                right: 0;
+                height: 100%;
+                padding: 2%;
+            }
+            #bottom {
+                width: 100%;
+                bottom: 0;
+            }
+            #left {
+                left: 0;
+                height: 100%;
+                padding: 2%;
+            }
+
             </style>
     </head>
 
@@ -103,8 +130,8 @@
         <div id="header">
             <button class="sideBtn" id="more" onclick="openMore()" style="opacity: 1;"><i class="fa fa-bars"></i></button>
             <button class="sideBtn" id="search"><i class="fa fa-search"></i></button>
-            <button class="sideBtn" id="settings" ><i class="fa fa-cog"></i></button>
-            <button class="sideBtn" id="account" ><i class="fa fa-user-circle"></i></button>
+            <button class="sideBtn" id="settings"><i class="fa fa-cog"></i></button>
+            <button class="sideBtn" id="account"><i class="fa fa-user-circle"></i></button>
         </div>
 
         <div id="background1">
@@ -112,6 +139,15 @@
             <h2 id="h2">Rest Tomorrow</h2>
             <button id="innovate" onclick="change()">Innovate</button>
         </div>
+
+        <div class="buttons">
+            <button id="top" onclick="slideUp()"><i class="fa fa-angle-up"></i></button>
+            <button id="right" onclick="slideRight()"><i class="fa fa-angle-right"></i></button>
+            <button id="bottom" onclick="slideDown()"><i class="fa fa-angle-down"></i></button>
+            <button id="left" onclick="slideLeft()"><i class="fa fa-angle-left"></i></button>
+        </div>
+
+        
 
         <div id="background2"></div>
 
@@ -239,11 +275,16 @@
             }, 600);*/
 
             //Changes background
-            function change() {
-                let background2 = document.getElementById("background2"),
-                rndSide = Math.floor(Math.random() * 4);
+            const background2 = document.getElementById("background2");
 
+            function changeColour() {
                 background2.style.backgroundColor = "#" +(Math.random()*0xFFFFFF<<0).toString(16);
+            }
+
+            function change() {
+                
+                changeColour();
+                let rndSide = Math.floor(Math.random() * 4);
 
                 switch (rndSide) {
                     case 0:
@@ -292,6 +333,47 @@
                         );
                         break;
                 }
+            }
+
+            function slideUp() {
+                changeColour();
+                background2.animate
+                        (
+                            {
+                                bottom: ["100%", "0"],
+                            },
+                            {duration: 300, fill: "forwards"}
+                        );
+            }
+            function slideRight() {
+                changeColour();
+                background2.animate
+                        (
+                            {
+                                left: ["100%", "0"],
+                            },
+                            {duration: 300, fill: "forwards"}
+                        );
+            }
+            function slideDown() {
+                changeColour();
+                background2.animate
+                        (
+                            {
+                                top: ["100%", "0"],
+                            },
+                            {duration: 300, fill: "forwards"}
+                        );
+            }
+            function slideLeft() {
+                changeColour();
+                background2.animate
+                        (
+                            {
+                                right: ["100%", "0"],
+                            },
+                            {duration: 300, fill: "forwards"}
+                        );
             }
             
         </script>
