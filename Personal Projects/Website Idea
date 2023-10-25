@@ -4,12 +4,13 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <style>
             @import url('https://fonts.cdnfonts.com/css/motiva-sans');
-            
+
             body {
                 margin: 0%;
                 color: aliceblue;
                 overflow: hidden;
                 font-family: 'Motiva Sans', sans-serif;
+                background-color: black;
             }
 
             #header {
@@ -92,34 +93,37 @@
 
             #background2 {
                 position: absolute;
-                width: 100vw;
-                height: 100vh;
+                top: 50%;
+                left: 50%;
             }
 
 
-            .buttons>button {
+            .moveButtons>button {
                 position: absolute;
-                padding: 1%;
                 font-size: 2em;
                 z-index: 1;
+                opacity: 0;
+                border: none;
             }
 
-            #top {
+            #topButton {
                 width: 100%;
+                margin: 0;
             }
-            #right {
+            #rightButton {
                 right: 0;
                 height: 100%;
-                padding: 2%;
+                padding: 1%;
+                margin: 0;
             }
-            #bottom {
+            #bottomButton {
                 width: 100%;
                 bottom: 0;
             }
-            #left {
+            #leftButton {
                 left: 0;
                 height: 100%;
-                padding: 2%;
+                padding: 1%;
             }
 
             </style>
@@ -140,18 +144,15 @@
             <button id="innovate" onclick="change()">Innovate</button>
         </div>
 
-        <div class="buttons">
-            <button id="top" onclick="slideUp()"><i class="fa fa-angle-up"></i></button>
-            <button id="right" onclick="slideRight()"><i class="fa fa-angle-right"></i></button>
-            <button id="bottom" onclick="slideDown()"><i class="fa fa-angle-down"></i></button>
-            <button id="left" onclick="slideLeft()"><i class="fa fa-angle-left"></i></button>
+        <div class="moveButtons">
+            <button id="topButton" onmouseleave="buttonTop2()" onmouseenter="buttonTop()" onclick="slideUp()"><i class="fa fa-angle-up"></i></button>
+            <button id="rightButton" onmouseleave="buttonRight2()" onmouseenter="buttonRight()" onhover="" onclick="slideRight()"><i class="fa fa-angle-right"></i></button>
+            <button id="bottomButton" onmouseleave="buttonBottom2()" onmouseenter="buttonBottom()" onhover="" onclick="slideDown()"><i class="fa fa-angle-down"></i></button>
+            <button id="leftButton" onmouseleave="buttonLeft2()" onmouseenter="buttonLeft()" onhover="" onclick="slideLeft()"><i class="fa fa-angle-left"></i></button>
         </div>
 
-        
 
         <div id="background2"></div>
-
-
 
 
         <script>
@@ -274,79 +275,72 @@
             }());
             }, 600);*/
 
-            //Changes background
+            
             const background2 = document.getElementById("background2");
 
+            const buttons = {
+                topButton: document.getElementById("topButton"),
+                bottomButton: document.getElementById("bottomButton"),
+                leftButton: document.getElementById("leftButton"),
+                rightButton: document.getElementById("rightButton")
+            }
+
+
+
+            //Makes the background a random colour
             function changeColour() {
-                background2.style.backgroundColor = "#" +(Math.random()*0xFFFFFF<<0).toString(16);
+                let rndColour = (Math.random()*0xFFFFFF<<0).toString(16);
+                background2.style.backgroundColor = "#" + rndColour;
+                buttons.topButton.style.backgroundColor = "#" + rndColour;
+                buttons.rightButton.style.backgroundColor = "#" + rndColour;
+                buttons.bottomButton.style.backgroundColor = "#" + rndColour;
+                buttons.leftButton.style.backgroundColor = "#" + rndColour;
             }
 
+            //Makes the background expand from the center of the screen
             function change() {
-                
-                changeColour();
-                let rndSide = Math.floor(Math.random() * 4);
 
-                switch (rndSide) {
-                    case 0:
-                        background2.animate
-                        (
-                            {
-                                top: ["100%", "0"],
-                            },
-                            {duration: 300, fill: "forwards"}
-                        );
-                        break;
-                    case 1:
-                        background2.animate
-                        (
-                            {
-                                bottom: ["100%", "0"],
-                            },
-                            {duration: 300, fill: "forwards"}
-                        );
-                        break;
-                    case 2:
-                        background2.animate
-                        (
-                            {
-                                left: ["100%", "0"],
-                            },
-                            {duration: 300, fill: "forwards"}
-                        );
-                        break;
-                    case 3:
-                        background2.animate
-                        (
-                            {
-                                right: ["100%", "0"],
-                            },
-                            {duration: 300, fill: "forwards"}
-                        );
-                        break;
-                    default:
+                changeColour();
+
+                innovate.animate
+                    (
+                        {
+                            top: ["13%", "20%"],
+                            opacity: ["1", "0"],
+                        },
+                        {duration: 400, fill: "forwards"}
+                    );
+
+                setTimeout(function(){
+                    background1.remove();
+                }, 1000);
+
                     background2.animate
-                        (
-                            {
-                                bottom: ["100%", "0"],
-                            },
-                            {duration: 300, fill: "forwards"}
-                        );
-                        break;
-                }
+                    (
+                        {
+                            height: ["0", "100vh"],
+                            width: ["0", "100vw"],
+                            top: ["", "0"],
+                            left: ["", "0"],
+                            opacity: ["0.2", "1"],
+                        },
+                        {duration: 1000, fill: "forwards"}
+                    );
             }
 
+            
             function slideUp() {
-                changeColour();
+                //changeColour();
                 background2.animate
                         (
                             {
-                                bottom: ["100%", "0"],
+                            bottom: ["100%", "0"],
                             },
                             {duration: 300, fill: "forwards"}
                         );
             }
             function slideRight() {
-                changeColour();
+                //changeColour();
                 background2.animate
                         (
                             {
@@ -356,7 +350,7 @@
                         );
             }
             function slideDown() {
-                changeColour();
+                //changeColour();
                 background2.animate
                         (
                             {
@@ -366,7 +360,7 @@
                         );
             }
             function slideLeft() {
-                changeColour();
+                //changeColour();
                 background2.animate
                         (
                             {
@@ -376,6 +370,92 @@
                         );
             }
             
+
+            
+
+            function buttonTop() {
+                buttons.topButton.animate
+                        (
+                            {
+                                opacity: ["", "1"],
+                                padding: ["", "1%"],
+                            },
+                            {duration: 200, fill: "forwards"}
+                        );
+            }
+            function buttonTop2() {
+                buttons.topButton.animate
+                        (
+                            {
+                                opacity: ["", "0"],
+                                padding: ["", "0"],
+                            },
+                            {duration: 200, fill: "forwards"}
+                        );
+            }
+
+            function buttonBottom() {
+                buttons.bottomButton.animate
+                        (
+                            {
+                                opacity: ["", "1"],
+                                padding: ["", "1%"],
+                            },
+                            {duration: 200, fill: "forwards"}
+                        );
+            }
+            function buttonBottom2() {
+                buttons.bottomButton.animate
+                        (
+                            {
+                                opacity: ["", "0"],
+                                padding: ["", "0"],
+                            },
+                            {duration: 200, fill: "forwards"}
+                        );
+            }
+
+            function buttonLeft() {
+                buttons.leftButton.animate
+                        (
+                            {
+                                opacity: ["", "1"],
+                                padding: ["", "2%"],
+                            },
+                            {duration: 200, fill: "forwards"}
+                        );
+            }
+            function buttonLeft2() {
+                buttons.leftButton.animate
+                        (
+                            {
+                                opacity: ["", "0"],
+                                padding: ["", "1%"],
+                            },
+                            {duration: 200, fill: "forwards"}
+                        );
+            }
+
+            function buttonRight() {
+                buttons.rightButton.animate
+                        (
+                            {
+                                opacity: ["", "1"],
+                                padding: ["", "2%"],
+                            },
+                            {duration: 200, fill: "forwards"}
+                        );
+            }
+            function buttonRight2() {
+                buttons.rightButton.animate
+                        (
+                            {
+                                opacity: ["", "0"],
+                                padding: ["", "1%"],
+                            },
+                            {duration: 200, fill: "forwards"}
+                        );
+            }
         </script>
     </body>
 </html>
