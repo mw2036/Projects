@@ -287,14 +287,22 @@
 
 
 
+            function adjust(color, amount) {
+                return '#' + color.replace(/^#/, '').replace(/../g, color => ('0'+Math.min(255, Math.max(0, parseInt(color, 16) + amount)).toString(16)).substr(-2));
+            }
+
             //Makes the background a random colour
             function changeColour() {
-                let rndColour = (Math.random()*0xFFFFFF<<0).toString(16);
-                background2.style.backgroundColor = "#" + rndColour;
-                buttons.topButton.style.backgroundColor = "#" + rndColour;
-                buttons.rightButton.style.backgroundColor = "#" + rndColour;
-                buttons.bottomButton.style.backgroundColor = "#" + rndColour;
-                buttons.leftButton.style.backgroundColor = "#" + rndColour;
+                let rndColour = "#" + (Math.random()*0xFFFFFF<<0).toString(16);
+                background2.style.backgroundColor = rndColour;
+                buttons.topButton.style.backgroundColor = adjust(rndColour, 20);
+                buttons.topButton.style.color = adjust(rndColour, -20);
+                buttons.rightButton.style.backgroundColor = adjust(rndColour, 20);
+                buttons.rightButton.style.color = adjust(rndColour, -20);
+                buttons.bottomButton.style.backgroundColor = adjust(rndColour, 20);
+                buttons.bottomButton.style.color = adjust(rndColour, -20);
+                buttons.leftButton.style.backgroundColor = adjust(rndColour, 20);
+                buttons.leftButton.style.color = adjust(rndColour, -20);
             }
 
             //Makes the background expand from the center of the screen
@@ -302,12 +310,12 @@
 
                 changeColour();
 
-                innovate.animate
+                innovate.animate 
                     (
                         {
                             top: ["13%", "20%"],
                             opacity: ["1", "0"],
-                        },
+                        }, 
                         {duration: 400, fill: "forwards"}
                     );
 
@@ -330,7 +338,7 @@
 
             
             function slideUp() {
-                //changeColour();
+                changeColour();
                 background2.animate
                         (
                             {
@@ -340,7 +348,7 @@
                         );
             }
             function slideRight() {
-                //changeColour();
+                changeColour();
                 background2.animate
                         (
                             {
@@ -350,7 +358,7 @@
                         );
             }
             function slideDown() {
-                //changeColour();
+                changeColour();
                 background2.animate
                         (
                             {
@@ -360,7 +368,7 @@
                         );
             }
             function slideLeft() {
-                //changeColour();
+                changeColour();
                 background2.animate
                         (
                             {
